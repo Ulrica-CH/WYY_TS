@@ -1,26 +1,17 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { memo, Suspense } from 'react'
 
-function App() {
+import { Link, useRoutes } from 'react-router-dom'
+
+import routes from './router'
+
+export default memo(() => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="nav">
+        <Link to="/discover">Discover</Link>
+        <Link to="/mine">Mine</Link>
+      </div>
+      <Suspense fallback="loading">{useRoutes(routes)}</Suspense>
     </div>
-  );
-}
-
-export default App;
+  )
+})
